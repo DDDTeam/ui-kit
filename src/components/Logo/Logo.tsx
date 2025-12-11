@@ -1,0 +1,32 @@
+import { Component, type Ref } from "@robocotik/react";
+import LogoSVG from "@/assets/logo.svg?react";
+import clsx from "ddd-clsx";
+import styles from "./Logo.module.scss";
+
+interface LogoProps {
+  level?: "7" | "8";
+  className?: string;
+  getRootRef?: Ref<HTMLElement>;
+  [key: string]: any;
+}
+
+export class Logo extends Component<LogoProps> {
+  render() {
+    const { className, level, getRootRef, ...rest } = this.props;
+
+    return (
+      <LogoSVG
+        ref={getRootRef}
+        className={clsx(
+          styles.logo,
+          {
+            [styles.level7]: level === "7",
+            [styles.level8]: level === "8",
+          },
+          className
+        )}
+        {...rest}
+      />
+    );
+  }
+}
