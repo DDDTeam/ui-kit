@@ -1,10 +1,8 @@
-import { defineConfig, loadEnv } from "vite";
+import { defineConfig } from "vite";
 import svgr from "vite-plugin-svgr";
 import tsconfigPaths from "vite-tsconfig-paths";
 
-const baseViteConfig = defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), "");
-
+const baseViteConfig = defineConfig((_) => {
   return {
     plugins: [
       tsconfigPaths(),
@@ -42,7 +40,7 @@ const baseViteConfig = defineConfig(({ mode }) => {
       sourcemap: false,
       cssCodeSplit: false,
       rollupOptions: {
-        external: ["@robocotik/react"],
+        external: ["@robocotik/react, ddd-clsx"],
       },
     },
     esbuild: {

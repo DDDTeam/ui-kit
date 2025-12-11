@@ -1,6 +1,6 @@
-import { Component } from "@robocotik/react";
+import { Component, type Ref } from "@robocotik/react";
 import LogoSVG from "@/assets/logo.svg?react";
-import clsx from "@/clsx";
+import clsx from "ddd-clsx";
 import styles from "./Logo.module.scss";
 
 interface LogoProps {

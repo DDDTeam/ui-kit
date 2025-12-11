@@ -1,5 +1,5 @@
 import { Component, createRef, type Ref } from "@robocotik/react";
-import clsx from "@/clsx";
+import clsx from "ddd-clsx";
 import { Flex } from "../Flex/Flex";
 import styles from "./OTPInput.module.scss";
 

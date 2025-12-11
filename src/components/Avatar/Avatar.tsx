@@ -1,5 +1,5 @@
 import { Component, type Ref } from "@robocotik/react";
-import clsx from "@/clsx";
+import clsx from "ddd-clsx";
 import styles from "./Avatar.module.scss";
 
 interface AvatarProps {
