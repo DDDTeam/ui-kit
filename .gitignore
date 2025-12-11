@@ -1,6 +1,5 @@
 .idea
 node_modules/
-build/
-src/build/
-dist/
 .vite
+.vscode
+dist

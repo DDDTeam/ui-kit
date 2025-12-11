@@ -1,5 +1,4 @@
 import { defineConfig, loadEnv } from "vite";
-import { viteStaticCopy } from "vite-plugin-static-copy";
 import svgr from "vite-plugin-svgr";
 import tsconfigPaths from "vite-tsconfig-paths";
 
@@ -32,11 +31,17 @@ export const baseViteConfig = defineConfig(({ mode }) => {
       },
     },
     build: {
+      lib: {
+        entry: "src/index.ts",
+        name: "ui-kit",
+        formats: ["es"],
+        fileName: "index",
+      },
       outDir: "dist",
       emptyOutDir: true,
       sourcemap: true,
       rollupOptions: {
-        input: "index.html",
+        external: ["@robocotik/react"],
       },
     },
     esbuild: {
@@ -60,3 +65,5 @@ export const baseViteConfig = defineConfig(({ mode }) => {
     base: env.VITE_CDN_ADDRESS || "/",
   };
 });
+
+export default baseViteConfig;
