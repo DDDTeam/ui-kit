@@ -5,7 +5,7 @@ import styles from "./Separator.module.scss";
 interface SeparatorProps {
   mode: "primary" | "secondary";
   className?: string;
-  getRootRef?: any;
+  getRootRef?: Ref<HTMLElement>;
   [key: string]: any;
 }
 

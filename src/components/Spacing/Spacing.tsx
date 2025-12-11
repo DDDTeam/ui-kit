@@ -4,7 +4,7 @@ import styles from "./Spacing.module.scss";
 
 interface SpacingProps {
   level?: "7" | "8" | "9" | "10";
-  getRootRef?: any;
+  getRootRef?: Ref<HTMLElement>;
   className?: string;
   [key: string]: any;
 }

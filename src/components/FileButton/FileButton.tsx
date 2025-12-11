@@ -7,7 +7,7 @@ interface FileButtonProps {
   accept: string;
   onChange: (event: Event) => void;
   className?: string;
-  getRootRef?: any;
+  getRootRef?: Ref<HTMLElement>;
   [key: string]: any;
 }
 

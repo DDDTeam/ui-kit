@@ -4,7 +4,7 @@ import { Flex } from "../Flex/Flex";
 import styles from "./CardGrid.module.scss";
 
 interface CardGridProps {
-  getRootRef?: any;
+  getRootRef?: Ref<HTMLElement>;
   className?: string;
   [key: string]: any;
 }

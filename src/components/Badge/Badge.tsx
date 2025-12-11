@@ -6,7 +6,7 @@ interface BadgeProps {
   mode: "low" | "high" | "medium";
   size?: "m" | "s";
   className?: string;
-  getRootRef?: any;
+  getRootRef?: Ref<HTMLElement>;
   [key: string]: any;
 }
 

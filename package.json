@@ -1,6 +1,6 @@
 {
   "name": "ddd-ui-kit",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "UI Kit made by DDD team",
   "main": "dist/ddd-ui-kit.mjs",
   "module": "dist/ddd-ui-kit.mjs",
@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "type-check": "tsc --noEmit",
-    "start": "vite --config vite/vite.config.dev.ts",
+    "start": "vite",
     "build": "tsc && vite build && npm run build:types",
     "build:types": "tsc -p tsconfig.build.json"
   },

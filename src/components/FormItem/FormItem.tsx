@@ -18,7 +18,7 @@ interface FormItemProps {
   value?: string;
   className?: string;
   onChange: (value: string) => void;
-  getRootRef?: any;
+  getRootRef?: Ref<HTMLElement>;
   [key: string]: any;
 }
 

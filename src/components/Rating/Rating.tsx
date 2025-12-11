@@ -9,7 +9,7 @@ interface RatingProps {
   rating: string;
   mode: "low" | "medium" | "high";
   className?: string;
-  getRootRef?: any;
+  getRootRef?: Ref<HTMLElement>;
   [key: string]: any;
 }
 

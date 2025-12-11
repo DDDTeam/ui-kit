@@ -13,7 +13,7 @@ interface ButtonProps {
   onMouseLeave?: any;
   onMouseEnter?: any;
   children?: any;
-  getRootRef?: any;
+  getRootRef?: Ref<HTMLElement>;
   [key: string]: any;
 }
 

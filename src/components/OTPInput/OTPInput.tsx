@@ -1,4 +1,4 @@
-import { Component } from "@robocotik/react";
+import { Component, createRef, type Ref } from "@robocotik/react";
 import clsx from "@/clsx";
 import { Flex } from "../Flex/Flex";
 import styles from "./OTPInput.module.scss";
@@ -6,7 +6,7 @@ import styles from "./OTPInput.module.scss";
 interface OTPInputProps {
   length: number;
   onFinish: (otp: string) => void;
-  getRootRef?: any;
+  getRootRef?: Ref<HTMLElement>;
   className?: string;
   [key: string]: any;
 }
@@ -20,11 +20,12 @@ export class OTPInput extends Component<OTPInputProps, OTPInputState> {
     values: [],
   };
 
-  onMount() {
-    const firstInput = document.querySelector(
-      `[data-index="0"]`
-    ) as HTMLInputElement | null;
+  inputRefs = Array.from({ length: this.props.length }, () =>
+    createRef<HTMLInputElement>()
+  );
 
+  onMount() {
+    const firstInput = this.inputRefs[0].current;
     if (firstInput) {
       firstInput.focus();
     }
@@ -32,9 +33,9 @@ export class OTPInput extends Component<OTPInputProps, OTPInputState> {
 
   handleInput = (event: Event): void => {
     const target = event.currentTarget as HTMLInputElement;
-    const index = Number(target.dataset.index);
+    const index = this.inputRefs.findIndex((ref) => ref.current === target);
 
-    if (isNaN(index)) {
+    if (index < 0) {
       return;
     }
 
@@ -47,21 +48,22 @@ export class OTPInput extends Component<OTPInputProps, OTPInputState> {
 
     this.setState({ values: newValues });
 
-    if (target.value && target.nextElementSibling) {
-      (target.nextElementSibling as HTMLInputElement).focus();
+    if (target.value && this.inputRefs[index + 1]?.current) {
+      this.inputRefs[index + 1].current!.focus();
     }
   };
 
   handleKeyDown = (event: KeyboardEvent): void => {
     const target = event.currentTarget as HTMLInputElement;
-    const index = Number(target.dataset.index);
+    const index = this.inputRefs.findIndex((ref) => ref.current === target);
+
+    if (index === -1) {
+      return;
+    }
 
     if (event.key === "Backspace" && index > 0 && !target.value) {
-      const prevInput = target.previousElementSibling as HTMLInputElement;
-
-      if (prevInput) {
-        prevInput.focus();
-      }
+      const prevInput = this.inputRefs[index - 1].current;
+      if (prevInput) prevInput.focus();
     }
   };
 
@@ -84,10 +86,10 @@ export class OTPInput extends Component<OTPInputProps, OTPInputState> {
             type="text"
             maxLength={1}
             className={styles.input}
-            data-index={i}
             value={values[i]}
             onInput={this.handleInput}
             onKeyDown={this.handleKeyDown}
+            ref={this.inputRefs[i]}
           />
         ))}
       </Flex>

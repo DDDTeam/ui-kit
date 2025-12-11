@@ -10,7 +10,7 @@ interface SubheadProps {
   opacity?: "100" | "80" | "70" | "60" | "50" | "30";
   className?: string;
   onClick?: (event: MouseEvent) => void;
-  getRootRef?: any;
+  getRootRef?: Ref<HTMLElement>;
   [key: string]: any;
 }
 

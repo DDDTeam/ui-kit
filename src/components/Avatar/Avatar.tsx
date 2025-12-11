@@ -1,4 +1,4 @@
-import { Component } from "@robocotik/react";
+import { Component, type Ref } from "@robocotik/react";
 import clsx from "@/clsx";
 import styles from "./Avatar.module.scss";
 
@@ -7,7 +7,7 @@ interface AvatarProps {
   alt?: string;
   level?: "6" | "7" | "8" | "9" | "10";
   className?: string;
-  getRootRef?: any;
+  getRootRef?: Ref<HTMLElement>;
   [key: string]: any;
 }
 

@@ -9,7 +9,7 @@ interface TitleProps {
   weight?: "regular" | "bold";
   className?: string;
   onClick?: (event: MouseEvent) => void;
-  getRootRef?: any;
+  getRootRef?: Ref<HTMLElement>;
   id?: string;
   [key: string]: any;
 }

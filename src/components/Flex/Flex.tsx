@@ -9,7 +9,7 @@ interface FlexProps {
   id?: string;
   onClick?: (event: MouseEvent) => void;
   className?: string;
-  getRootRef?: any;
+  getRootRef?: Ref<HTMLElement>;
   [key: string]: any;
 }
 

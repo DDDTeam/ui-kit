@@ -6,7 +6,7 @@ import styles from "./Logo.module.scss";
 interface LogoProps {
   level?: "7" | "8";
   className?: string;
-  getRootRef?: any;
+  getRootRef?: Ref<HTMLElement>;
   [key: string]: any;
 }
 

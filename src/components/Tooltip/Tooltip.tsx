@@ -5,7 +5,7 @@ import styles from "./Tooltip.module.scss";
 interface TooltipProps {
   text: string;
   placement?: "top" | "bottom" | "left" | "right";
-  getRootRef?: any;
+  getRootRef?: Ref<HTMLElement>;
   className?: string;
   [key: string]: any;
 }

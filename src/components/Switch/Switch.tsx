@@ -6,7 +6,7 @@ import styles from "./Switch.module.scss";
 interface SwitchProps {
   checked?: boolean;
   onChange?: (checked: boolean) => void;
-  getRootRef?: any;
+  getRootRef?: Ref<HTMLElement>;
   className?: string;
   [key: string]: any;
 }
