@@ -33,13 +33,14 @@ export const baseViteConfig = defineConfig(({ mode }) => {
     build: {
       lib: {
         entry: "src/index.ts",
-        name: "ui-kit",
+        name: "DDD UI Kit",
         formats: ["es"],
-        fileName: "index",
+        fileName: "ddd-ui-kit",
       },
       outDir: "dist",
       emptyOutDir: true,
-      sourcemap: true,
+      sourcemap: false,
+      cssCodeSplit: false,
       rollupOptions: {
         external: ["@robocotik/react"],
       },

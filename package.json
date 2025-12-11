@@ -1,11 +1,19 @@
 {
-  "name": "ui-kit",
-  "version": "1.0.0",
+  "name": "ddd-ui-kit",
+  "version": "1.0.5",
   "description": "UI Kit made by DDD team",
+  "main": "dist/ddd-ui-kit.mjs",
+  "module": "dist/ddd-ui-kit.mjs",
+  "style": "dist/ddd-ui-kit.css",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "type-check": "tsc --noEmit",
     "start": "vite --config vite/vite.config.dev.ts",
-    "build": "tsc && vite build"
+    "build": "tsc && vite build && npm run build:types",
+    "build:types": "tsc -p tsconfig.build.json"
   },
   "keywords": [
     "ui-kit",
