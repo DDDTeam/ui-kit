@@ -23,7 +23,7 @@
   ],
   "dependencies": {
     "@robocotik/react": "^1.6.0",
-    "ddd-clsx": "^1.0.3"
+    "ddd-clsx": "^1.0.4"
   },
   "devDependencies": {
     "@fontsource/golos-ui": "^4.5.3",
