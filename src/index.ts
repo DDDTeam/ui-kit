@@ -1,43 +1,43 @@
-import './Tokens/Tokens.scss';
+import "@/components/Tokens/Tokens.scss";
 
-export { Avatar } from './Avatar/Avatar';
+export { Avatar } from "@/components/Avatar/Avatar";
 
-export { Badge } from './Badge/Badge';
+export { Badge } from "@/components/Badge/Badge";
 
-export { Button } from './Button/Button';
+export { Button } from "@/components/Button/Button";
 
-export { CardGrid } from './CardGrid/CardGrid';
+export { CardGrid } from "@/components/CardGrid/CardGrid";
 
-export { FileButton } from './FileButton/FileButton';
+export { FileButton } from "@/components/FileButton/FileButton";
 
-export { Flex } from './Flex/Flex';
+export { Flex } from "@/components/Flex/Flex";
 
-export { FormItem } from './FormItem/FormItem';
+export { FormItem } from "@/components/FormItem/FormItem";
 
-export { Headline } from './Headline/Headline';
+export { Headline } from "@/components/Headline/Headline";
 
-export { IconButton } from './IconButton/IconButton';
+export { IconButton } from "@/components/IconButton/IconButton";
 
-export { Image } from './Image/Image';
+export { Image } from "@/components/Image/Image";
 
-export { Logo } from './Logo/Logo';
+export { Logo } from "@/components/Logo/Logo";
 
-export { OTPInput } from './OTPInput/OTPInput';
+export { OTPInput } from "@/components/OTPInput/OTPInput";
 
-export { Paragraph } from './Paragraph/Paragraph';
+export { Paragraph } from "@/components/Paragraph/Paragraph";
 
-export { Rating } from './Rating/Rating';
+export { Rating } from "@/components/Rating/Rating";
 
-export { Separator } from './Separator/Separator';
+export { Separator } from "@/components/Separator/Separator";
 
-export { Spacing } from './Spacing/Spacing';
+export { Spacing } from "@/components/Spacing/Spacing";
 
-export { Subhead } from './Subhead/Subhead';
+export { Subhead } from "@/components/Subhead/Subhead";
 
-export { Switch } from './Switch/Switch';
+export { Switch } from "@/components/Switch/Switch";
 
-export { Textarea } from './Textarea/Textarea';
+export { Textarea } from "@/components/Textarea/Textarea";
 
-export { Title } from './Title/Title';
+export { Title } from "@/components/Title/Title";
 
-export { Tooltip } from './Tooltip/Tooltip';
+export { Tooltip } from "@/components/Tooltip/Tooltip";
