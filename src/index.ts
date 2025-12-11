@@ -41,3 +41,5 @@ export { Textarea } from "@/components/Textarea/Textarea";
 export { Title } from "@/components/Title/Title";
 
 export { Tooltip } from "@/components/Tooltip/Tooltip";
+
+export { Toast } from "@/components/Toast/Toast";

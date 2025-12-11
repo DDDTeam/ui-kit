@@ -1,5 +1,5 @@
 import { Component } from "@robocotik/react";
-import clsx from "../clsx";
+import clsx from "@/clsx";
 import { Flex } from "../Flex/Flex";
 import { Headline } from "../Headline/Headline";
 import { Subhead } from "../Subhead/Subhead";

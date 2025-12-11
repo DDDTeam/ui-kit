@@ -1,6 +1,6 @@
 {
   "name": "ddd-ui-kit",
-  "version": "1.0.9",
+  "version": "1.2.0",
   "description": "UI Kit made by DDD team",
   "main": "dist/ddd-ui-kit.mjs",
   "module": "dist/ddd-ui-kit.mjs",
