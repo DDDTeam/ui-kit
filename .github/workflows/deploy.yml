@@ -1,7 +1,6 @@
 name: Deploy Frontend Dev
 
-on:
-  push:
+on: push
 
 permissions:
   contents: read
