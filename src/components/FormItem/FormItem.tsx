@@ -19,7 +19,7 @@ interface FormItemProps {
   className?: string;
   onChange: (value: string) => void;
   getRootRef?: Ref<HTMLElement>;
-  [key: string]: any;
+  name?: string;
 }
 
 export class FormItem extends Component<FormItemProps> {
@@ -42,6 +42,7 @@ export class FormItem extends Component<FormItemProps> {
       top,
       bottom,
       getRootRef,
+      name,
     } = this.props;
 
     return (
@@ -76,6 +77,7 @@ export class FormItem extends Component<FormItemProps> {
             placeholder={placeholder}
             defaultValue={defaultValue}
             value={value}
+            name={name}
             onInput={this.onChange}
             className={clsx(
               styles.input,

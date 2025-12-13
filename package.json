@@ -1,6 +1,6 @@
 {
   "name": "ddd-ui-kit",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "UI Kit made by DDD team",
   "main": "dist/ddd-ui-kit.mjs",
   "module": "dist/ddd-ui-kit.mjs",
@@ -13,7 +13,9 @@
     "type-check": "tsc --noEmit",
     "start": "vite",
     "build": "tsc && vite build && npm run build:types",
-    "build:types": "tsc -p tsconfig.build.json"
+    "build:types": "tsc -p tsconfig.build.json",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "keywords": [
     "ui-kit",
@@ -28,6 +30,9 @@
   "devDependencies": {
     "@fontsource/golos-ui": "^4.5.3",
     "@robocotik/react": "^1.6.0",
+    "@storybook/builder-vite": "^10.1.8",
+    "@storybook/html": "^10.1.8",
+    "@storybook/html-vite": "^10.1.8",
     "@svgr/plugin-jsx": "^8.1.0",
     "@svgr/plugin-svgo": "^8.1.0",
     "@types/node": "^24.7.2",

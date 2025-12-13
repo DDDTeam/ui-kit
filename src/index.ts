@@ -1,4 +1,4 @@
-import "@/components/Tokens/Tokens.scss";
+import "@/styles/tokens.scss";
 
 export { Avatar } from "@/components/Avatar/Avatar";
 
