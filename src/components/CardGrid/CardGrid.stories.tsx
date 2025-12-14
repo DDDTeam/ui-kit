@@ -22,8 +22,8 @@ export const Default: Story = {
     const container = document.createElement("div");
     container.style.padding = "20px";
     container.style.minHeight = "100vh";
-    container.style.background = "hsl(235deg 52% 16%)";
     container.style.width = "100%";
+    container.style.background = "hsl(235deg 52% 16%)";
     container.style.boxSizing = "border-box";
     container.style.display = "flex";
     container.style.alignItems = "center";
@@ -39,7 +39,7 @@ export const Default: Story = {
         key={i}
         style={{
           padding: "20px",
-          background: "hsl(237deg 53% 16%)",
+          background: "hsl(233deg 52% 34%)",
           borderRadius: "10px",
           color: "hsl(48deg 14% 93%)",
         }}
@@ -60,8 +60,8 @@ export const Playground: Story = {
     const container = document.createElement("div");
     container.style.padding = "20px";
     container.style.minHeight = "100vh";
-    container.style.background = "hsl(235deg 52% 16%)";
     container.style.width = "100%";
+    container.style.background = "hsl(235deg 52% 16%)";
     container.style.boxSizing = "border-box";
     container.style.display = "flex";
     container.style.alignItems = "center";

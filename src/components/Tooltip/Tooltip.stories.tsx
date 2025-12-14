@@ -46,6 +46,7 @@ export const AllPlacements: Story = {
 
     placements.forEach((placement) => {
       const tooltipContainer = document.createElement("div");
+      tooltipContainer.style.position = "relative";
       render(
         <Tooltip text={`Tooltip ${placement}`} placement={placement}>
           <button
@@ -64,6 +65,52 @@ export const AllPlacements: Story = {
         tooltipContainer
       );
       container.appendChild(tooltipContainer);
+
+      // Устанавливаем тултип видимым для демонстрации
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          const allDivs = tooltipContainer.querySelectorAll("div");
+          allDivs.forEach((div) => {
+            const className = div.className || "";
+            if (
+              className.includes("tooltip") &&
+              !className.includes("tooltipWrapper")
+            ) {
+              const el = div as HTMLElement;
+              el.style.opacity = "1";
+              el.style.pointerEvents = "none";
+              el.style.visibility = "visible";
+              // Исправляем позиционирование для fixed
+              if (
+                el.style.position === "fixed" ||
+                getComputedStyle(el).position === "fixed"
+              ) {
+                const button = tooltipContainer.querySelector("button");
+                if (button) {
+                  const rect = button.getBoundingClientRect();
+                  if (placement === "top") {
+                    el.style.top = `${rect.top - el.offsetHeight - 16}px`;
+                    el.style.left = `${rect.left + rect.width / 2}px`;
+                    el.style.transform = "translateX(-50%)";
+                  } else if (placement === "bottom") {
+                    el.style.top = `${rect.bottom + 16}px`;
+                    el.style.left = `${rect.left + rect.width / 2}px`;
+                    el.style.transform = "translateX(-50%)";
+                  } else if (placement === "left") {
+                    el.style.left = `${rect.left - el.offsetWidth - 16}px`;
+                    el.style.top = `${rect.top + rect.height / 2}px`;
+                    el.style.transform = "translateY(-50%)";
+                  } else if (placement === "right") {
+                    el.style.left = `${rect.right + 16}px`;
+                    el.style.top = `${rect.top + rect.height / 2}px`;
+                    el.style.transform = "translateY(-50%)";
+                  }
+                }
+              }
+            }
+          });
+        }, 300);
+      });
     });
 
     return container;
@@ -85,8 +132,9 @@ export const Playground: Story = {
     const { children, ...props } = args;
 
     const tooltipContainer = document.createElement("div");
+    tooltipContainer.style.position = "relative";
     render(
-      <Tooltip {...props}>
+      <Tooltip text="Подсказка" {...props}>
         <button
           style={{
             padding: "10px 20px",
@@ -103,6 +151,53 @@ export const Playground: Story = {
       tooltipContainer
     );
     container.appendChild(tooltipContainer);
+
+    // Устанавливаем тултип видимым для демонстрации
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        const allDivs = tooltipContainer.querySelectorAll("div");
+        const placement = props.placement || "right";
+        allDivs.forEach((div) => {
+          const className = div.className || "";
+          if (
+            className.includes("tooltip") &&
+            !className.includes("tooltipWrapper")
+          ) {
+            const el = div as HTMLElement;
+            el.style.opacity = "1";
+            el.style.pointerEvents = "none";
+            el.style.visibility = "visible";
+            // Исправляем позиционирование для fixed
+            if (
+              el.style.position === "fixed" ||
+              getComputedStyle(el).position === "fixed"
+            ) {
+              const button = tooltipContainer.querySelector("button");
+              if (button) {
+                const rect = button.getBoundingClientRect();
+                if (placement === "top") {
+                  el.style.top = `${rect.top - el.offsetHeight - 16}px`;
+                  el.style.left = `${rect.left + rect.width / 2}px`;
+                  el.style.transform = "translateX(-50%)";
+                } else if (placement === "bottom") {
+                  el.style.top = `${rect.bottom + 16}px`;
+                  el.style.left = `${rect.left + rect.width / 2}px`;
+                  el.style.transform = "translateX(-50%)";
+                } else if (placement === "left") {
+                  el.style.left = `${rect.left - el.offsetWidth - 16}px`;
+                  el.style.top = `${rect.top + rect.height / 2}px`;
+                  el.style.transform = "translateY(-50%)";
+                } else if (placement === "right") {
+                  el.style.left = `${rect.right + 16}px`;
+                  el.style.top = `${rect.top + rect.height / 2}px`;
+                  el.style.transform = "translateY(-50%)";
+                }
+              }
+            }
+          }
+        });
+      }, 300);
+    });
 
     return container;
   },

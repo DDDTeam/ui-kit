@@ -62,7 +62,6 @@ export const AllModes: Story = {
             style={{
               width: "24px",
               height: "24px",
-              color: "hsl(48deg 14% 93%)",
               fill: "hsl(48deg 14% 93%)",
             }}
           />
@@ -107,7 +106,6 @@ export const Playground: Story = {
             style={{
               width: "24px",
               height: "24px",
-              color: "hsl(48deg 14% 93%)",
               fill: "hsl(48deg 14% 93%)",
             }}
           />

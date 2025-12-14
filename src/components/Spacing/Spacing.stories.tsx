@@ -52,7 +52,7 @@ export const AllLevels: Story = {
 
       const beforeDiv = document.createElement("div");
       beforeDiv.style.padding = "20px";
-      beforeDiv.style.background = "hsl(237deg 53% 16%)";
+      beforeDiv.style.background = "hsl(233deg 52% 34%)";
       beforeDiv.style.borderRadius = "10px";
       beforeDiv.style.color = "hsl(48deg 14% 93%)";
       beforeDiv.textContent = "Before";
@@ -64,7 +64,7 @@ export const AllLevels: Story = {
 
       const afterDiv = document.createElement("div");
       afterDiv.style.padding = "20px";
-      afterDiv.style.background = "hsl(237deg 53% 16%)";
+      afterDiv.style.background = "hsl(233deg 52% 34%)";
       afterDiv.style.borderRadius = "10px";
       afterDiv.style.color = "hsl(48deg 14% 93%)";
       afterDiv.textContent = "After";

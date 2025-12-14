@@ -63,7 +63,7 @@ export const AllModes: Story = {
     container.style.alignItems = "center";
     container.style.justifyContent = "center";
     container.style.flexDirection = "column";
-    container.style.gap = "20px";
+    container.style.gap = "10px";
     container.style.padding = "20px";
     container.style.minHeight = "100vh";
     container.style.background = "hsl(235deg 52% 16%)";
@@ -72,10 +72,12 @@ export const AllModes: Story = {
 
     modes.forEach((mode) => {
       const formItemContainer = document.createElement("div");
+      formItemContainer.style.width = "600px";
       render(
         <FormItem
           mode={mode}
-          top={`${mode.charAt(0).toUpperCase() + mode.slice(1)} Mode`}
+          top={`${mode.charAt(0).toUpperCase() + mode.slice(1)}`}
+          bottom="Подсказка"
           placeholder="Enter text"
           onChange={(value) => console.log("Value changed", value)}
         />,
@@ -101,6 +103,7 @@ export const Playground: Story = {
     container.style.background = "hsl(235deg 52% 16%)";
 
     const formItemContainer = document.createElement("div");
+    formItemContainer.style.width = "400px";
     render(
       <FormItem
         mode="primary"

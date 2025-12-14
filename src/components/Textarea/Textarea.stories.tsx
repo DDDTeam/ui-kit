@@ -34,7 +34,7 @@ const meta: Meta = {
   },
   args: {
     status: "default",
-    top: "Label",
+    top: "Заголовок",
     bottom: "Helper text",
     placeholder: "Enter text",
     onChange: (value: string) => console.log("Value changed", value),
@@ -57,12 +57,14 @@ export const Default: Story = {
     container.style.background = "hsl(235deg 52% 16%)";
 
     const textareaContainer = document.createElement("div");
+    textareaContainer.style.width = "600px";
     render(
       <Textarea
         top="Label"
         bottom="Helper text"
         placeholder="Enter text"
         onChange={(value) => console.log("Value changed", value)}
+        style={{ minHeight: "150px" }}
       />,
       textareaContainer
     );
@@ -85,7 +87,15 @@ export const Playground: Story = {
     container.style.background = "hsl(235deg 52% 16%)";
 
     const textareaContainer = document.createElement("div");
-    render(<Textarea {...args} />, textareaContainer);
+    textareaContainer.style.width = "600px";
+    render(
+      <Textarea
+        onChange={(value) => console.log("Value changed", value)}
+        {...args}
+        style={{ minHeight: "150px", ...args.style }}
+      />,
+      textareaContainer
+    );
     container.appendChild(textareaContainer);
 
     return container;
