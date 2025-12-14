@@ -99,6 +99,7 @@ export const Playground: Story = {
             color: "white",
             borderRadius: "4px",
             cursor: "pointer",
+            fontFamily: '"Golos UI", Arial, sans-serif',
           }}
         >
           Наведите

@@ -29,7 +29,7 @@ const meta: Meta = {
   args: {
     direction: "row",
     align: "center",
-    justify: "start",
+    justify: "center",
   },
 };
 
@@ -109,6 +109,8 @@ export const Playground: Story = {
           background: "hsl(233deg 52% 34%)",
           borderRadius: "10px",
           color: "hsl(48deg 14% 93%)",
+          width: args.direction === "row" ? "120px" : "auto",
+          flexShrink: 0,
         }}
       >
         Item {i + 1}
@@ -122,7 +124,8 @@ export const Playground: Story = {
           padding: "20px",
           background: "hsl(210deg 30% 87%)",
           gap: "10px",
-          minWidth: "200px",
+          width: args.direction === "row" ? "600px" : "300px",
+          minHeight: args.direction === "column" ? "400px" : "auto",
         }}
       >
         {cards}
