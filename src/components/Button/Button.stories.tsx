@@ -72,6 +72,7 @@ export const AllModes: Story = {
     container.style.gap = "10px";
     container.style.padding = "20px";
     container.style.minHeight = "100vh";
+    container.style.background = "hsl(235deg 52% 16%)";
 
     const modes = ["primary", "secondary", "tertiary", "quaternary"] as const;
 
@@ -100,6 +101,7 @@ export const Playground: Story = {
     container.style.gap = "10px";
     container.style.padding = "20px";
     container.style.minHeight = "100vh";
+    container.style.background = "hsl(235deg 52% 16%)";
 
     const { children, ...props } = args;
 
