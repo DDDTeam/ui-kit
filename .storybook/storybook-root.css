@@ -1,0 +1,11 @@
+#storybook-root {
+  height: 100vh;
+  display: flex;
+  background: rgb(20, 23, 62);
+  justify-content: center;
+  align-items: center;
+}
+
+.sb-main-padded {
+  overflow: hidden;
+}

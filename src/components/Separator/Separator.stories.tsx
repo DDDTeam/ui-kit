@@ -28,9 +28,6 @@ export const AllModes: Story = {
     container.style.justifyContent = "center";
     container.style.flexDirection = "column";
     container.style.gap = "20px";
-    container.style.padding = "20px";
-    container.style.minHeight = "100vh";
-    container.style.background = "hsl(235deg 52% 16%)";
     container.style.width = "100%";
 
     const modes = ["primary", "secondary"] as const;
@@ -54,9 +51,6 @@ export const Playground: Story = {
     container.style.justifyContent = "center";
     container.style.flexDirection = "column";
     container.style.gap = "10px";
-    container.style.padding = "20px";
-    container.style.minHeight = "100vh";
-    container.style.background = "hsl(235deg 52% 16%)";
     container.style.width = "100%";
 
     const separatorContainer = document.createElement("div");

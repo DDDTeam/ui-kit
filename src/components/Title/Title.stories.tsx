@@ -51,13 +51,11 @@ export const AllLevels: Story = {
   render: () => {
     const container = document.createElement("div");
     container.style.display = "flex";
-    container.style.alignItems = "center";
-    container.style.justifyContent = "center";
     container.style.flexDirection = "column";
+    container.style.alignItems = "center";
     container.style.gap = "10px";
-    container.style.padding = "20px";
-    container.style.minHeight = "100vh";
-    container.style.background = "hsl(235deg 52% 16%)";
+    container.style.maxHeight = "100vh";
+    container.style.overflow = "auto";
 
     const levels = ["1", "2", "3", "4", "5", "6"] as const;
 
@@ -82,17 +80,10 @@ export const AllLevels: Story = {
 export const Playground: Story = {
   render: (args) => {
     const container = document.createElement("div");
-    container.style.display = "flex";
-    container.style.alignItems = "center";
-    container.style.justifyContent = "center";
-    container.style.flexDirection = "column";
-    container.style.gap = "10px";
-    container.style.padding = "20px";
-    container.style.minHeight = "100vh";
     container.style.width = "100%";
     container.style.boxSizing = "border-box";
-    container.style.overflowX = "hidden";
-    container.style.background = "hsl(235deg 52% 16%)";
+    container.style.maxHeight = "100vh";
+    container.style.overflow = "auto";
 
     const { children, ...props } = args;
 
@@ -102,6 +93,7 @@ export const Playground: Story = {
     titleContainer.style.maxWidth = "100%";
     titleContainer.style.boxSizing = "border-box";
     titleContainer.style.overflowWrap = "break-word";
+    titleContainer.style.overflow = "auto";
     render(
       <Title {...props} style={{ margin: "0", ...props.style }}>
         {children}

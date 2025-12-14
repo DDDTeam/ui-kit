@@ -20,13 +20,9 @@ type Story = StoryObj;
 export const Default: Story = {
   render: () => {
     const container = document.createElement("div");
-    container.style.padding = "20px";
-    container.style.minHeight = "100vh";
     container.style.width = "100%";
-    container.style.background = "hsl(235deg 52% 16%)";
     container.style.boxSizing = "border-box";
     container.style.display = "flex";
-    container.style.alignItems = "center";
     container.style.justifyContent = "center";
 
     const cardGridContainer = document.createElement("div");
@@ -58,13 +54,9 @@ export const Default: Story = {
 export const Playground: Story = {
   render: (args) => {
     const container = document.createElement("div");
-    container.style.padding = "20px";
-    container.style.minHeight = "100vh";
     container.style.width = "100%";
-    container.style.background = "hsl(235deg 52% 16%)";
     container.style.boxSizing = "border-box";
     container.style.display = "flex";
-    container.style.alignItems = "center";
     container.style.justifyContent = "center";
 
     const cardGridContainer = document.createElement("div");

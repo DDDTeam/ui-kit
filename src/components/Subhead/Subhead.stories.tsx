@@ -57,13 +57,9 @@ export const AllLevels: Story = {
   render: () => {
     const container = document.createElement("div");
     container.style.display = "flex";
-    container.style.alignItems = "center";
-    container.style.justifyContent = "center";
     container.style.flexDirection = "column";
+    container.style.alignItems = "center";
     container.style.gap = "10px";
-    container.style.padding = "20px";
-    container.style.minHeight = "100vh";
-    container.style.background = "hsl(235deg 52% 16%)";
 
     const levels = ["7", "8", "9", "10", "11"] as const;
 
@@ -84,13 +80,8 @@ export const Playground: Story = {
   render: (args) => {
     const container = document.createElement("div");
     container.style.display = "flex";
-    container.style.alignItems = "center";
     container.style.justifyContent = "center";
-    container.style.flexDirection = "column";
-    container.style.gap = "10px";
-    container.style.padding = "20px";
-    container.style.minHeight = "100vh";
-    container.style.background = "hsl(235deg 52% 16%)";
+    container.style.alignItems = "center";
 
     const { children, ...props } = args;
 

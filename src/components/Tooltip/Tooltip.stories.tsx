@@ -15,10 +15,15 @@ const meta: Meta = {
       options: ["top", "bottom", "left", "right"],
       description: "Расположение тултипа",
     },
+    children: {
+      control: "text",
+      description: "Текст кнопки/элемента",
+    },
   },
   args: {
     text: "Подсказка",
     placement: "right",
+    children: "Наведите",
   },
 };
 
@@ -29,13 +34,9 @@ export const AllModes: Story = {
   render: () => {
     const container = document.createElement("div");
     container.style.display = "flex";
-    container.style.alignItems = "center";
-    container.style.justifyContent = "center";
     container.style.flexDirection = "column";
+    container.style.alignItems = "center";
     container.style.gap = "50px";
-    container.style.padding = "100px";
-    container.style.minHeight = "100vh";
-    container.style.background = "hsl(235deg 52% 16%)";
 
     const placements: Array<"top" | "bottom" | "left" | "right"> = [
       "top",
@@ -81,17 +82,14 @@ export const Playground: Story = {
   render: (args) => {
     const container = document.createElement("div");
     container.style.display = "flex";
-    container.style.alignItems = "center";
     container.style.justifyContent = "center";
-    container.style.flexDirection = "column";
-    container.style.gap = "10px";
-    container.style.padding = "100px 20px";
-    container.style.minHeight = "100vh";
-    container.style.background = "hsl(235deg 52% 16%)";
+    container.style.alignItems = "center";
+
+    const { children, text, placement } = args;
 
     const tooltipContainer = document.createElement("div");
     render(
-      <Tooltip text={args.text} placement={args.placement}>
+      <Tooltip text={text} placement={placement}>
         <div
           style={{
             padding: "10px 20px",
@@ -102,7 +100,7 @@ export const Playground: Story = {
             fontFamily: '"Golos UI", Arial, sans-serif',
           }}
         >
-          Наведите
+          {children}
         </div>
       </Tooltip>,
       tooltipContainer

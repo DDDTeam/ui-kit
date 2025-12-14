@@ -39,13 +39,9 @@ export const AllTypes: Story = {
   render: () => {
     const container = document.createElement("div");
     container.style.display = "flex";
-    container.style.alignItems = "center";
-    container.style.justifyContent = "center";
     container.style.flexDirection = "column";
+    container.style.alignItems = "center";
     container.style.gap = "30px";
-    container.style.padding = "20px";
-    container.style.minHeight = "100vh";
-    container.style.background = "hsl(235deg 52% 16%)";
 
     const types = ["success", "error", "info"] as const;
 
@@ -77,13 +73,8 @@ export const Playground: Story = {
   render: (args) => {
     const container = document.createElement("div");
     container.style.display = "flex";
-    container.style.alignItems = "center";
     container.style.justifyContent = "center";
-    container.style.flexDirection = "column";
-    container.style.gap = "10px";
-    container.style.padding = "20px";
-    container.style.minHeight = "100vh";
-    container.style.background = "hsl(235deg 52% 16%)";
+    container.style.alignItems = "center";
 
     const toastContainer = document.createElement("div");
     render(

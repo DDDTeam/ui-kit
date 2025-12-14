@@ -35,23 +35,14 @@ export const AllModes: Story = {
   render: () => {
     const container = document.createElement("div");
     container.style.display = "flex";
-    container.style.alignItems = "center";
-    container.style.justifyContent = "center";
     container.style.flexDirection = "column";
+    container.style.alignItems = "center";
     container.style.gap = "10px";
-    container.style.padding = "20px";
-    container.style.minHeight = "100vh";
-    container.style.width = "100%";
-    container.style.background = "hsl(235deg 52% 16%)";
 
     const modes = ["low", "medium", "high"] as const;
 
     modes.forEach((mode) => {
       const badgeContainer = document.createElement("div");
-      badgeContainer.style.position = "relative";
-      badgeContainer.style.display = "flex";
-      badgeContainer.style.justifyContent = "center";
-      badgeContainer.style.alignItems = "center";
       render(
         <Badge
           mode={mode}
@@ -72,22 +63,12 @@ export const Playground: Story = {
   render: (args) => {
     const container = document.createElement("div");
     container.style.display = "flex";
-    container.style.alignItems = "center";
     container.style.justifyContent = "center";
-    container.style.flexDirection = "column";
-    container.style.gap = "10px";
-    container.style.padding = "20px";
-    container.style.minHeight = "100vh";
-    container.style.width = "100%";
-    container.style.background = "hsl(235deg 52% 16%)";
+    container.style.alignItems = "center";
 
     const { children, ...props } = args;
 
     const badgeContainer = document.createElement("div");
-    badgeContainer.style.position = "relative";
-    badgeContainer.style.display = "flex";
-    badgeContainer.style.justifyContent = "center";
-    badgeContainer.style.alignItems = "center";
     render(
       <Badge
         mode="low"
