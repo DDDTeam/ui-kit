@@ -13,7 +13,7 @@ const meta: Meta = {
     mode: {
       control: "select",
       options: ["low", "medium", "high"],
-      description: "Режим рейтинга",
+      description: "Категория рейтинга",
     },
   },
   args: {

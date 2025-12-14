@@ -17,7 +17,8 @@ const meta: Meta = {
   },
   args: {
     checked: false,
-    onChange: (checked: boolean) => console.log("Switch changed", checked),
+    onChange: (checked: boolean) =>
+      console.log("Переключатель изменился", checked),
   },
 };
 

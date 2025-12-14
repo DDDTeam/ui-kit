@@ -38,12 +38,10 @@ export const AllLevels: Story = {
     levels.forEach((level) => {
       const spacingContainer = document.createElement("div");
       if (level === "7") {
-        // level7 использует width, поэтому горизонтальный layout
         spacingContainer.style.display = "flex";
         spacingContainer.style.alignItems = "center";
         spacingContainer.style.gap = "10px";
       } else {
-        // level8-10 используют height, поэтому вертикальный layout
         spacingContainer.style.display = "flex";
         spacingContainer.style.flexDirection = "column";
         spacingContainer.style.alignItems = "center";
@@ -55,7 +53,7 @@ export const AllLevels: Story = {
       beforeDiv.style.background = "hsl(233deg 52% 34%)";
       beforeDiv.style.borderRadius = "10px";
       beforeDiv.style.color = "hsl(48deg 14% 93%)";
-      beforeDiv.textContent = "Before";
+      beforeDiv.textContent = "До";
       spacingContainer.appendChild(beforeDiv);
 
       const spacingElement = document.createElement("div");
@@ -67,7 +65,7 @@ export const AllLevels: Story = {
       afterDiv.style.background = "hsl(233deg 52% 34%)";
       afterDiv.style.borderRadius = "10px";
       afterDiv.style.color = "hsl(48deg 14% 93%)";
-      afterDiv.textContent = "After";
+      afterDiv.textContent = "После";
       spacingContainer.appendChild(afterDiv);
 
       container.appendChild(spacingContainer);
@@ -92,12 +90,10 @@ export const Playground: Story = {
     const spacingContainer = document.createElement("div");
     const level = args.level || "8";
     if (level === "7") {
-      // level7 использует width, поэтому горизонтальный layout
       spacingContainer.style.display = "flex";
       spacingContainer.style.alignItems = "center";
       spacingContainer.style.gap = "10px";
     } else {
-      // level8-10 используют height, поэтому вертикальный layout
       spacingContainer.style.display = "flex";
       spacingContainer.style.flexDirection = "column";
       spacingContainer.style.alignItems = "center";
@@ -106,10 +102,10 @@ export const Playground: Story = {
 
     const beforeDiv = document.createElement("div");
     beforeDiv.style.padding = "20px";
-    beforeDiv.style.background = "hsl(237deg 53% 16%)";
+    beforeDiv.style.background = "hsl(233deg 52% 34%)";
     beforeDiv.style.borderRadius = "10px";
     beforeDiv.style.color = "hsl(48deg 14% 93%)";
-    beforeDiv.textContent = "Before";
+    beforeDiv.textContent = "До";
     spacingContainer.appendChild(beforeDiv);
 
     const spacingElement = document.createElement("div");
@@ -118,10 +114,10 @@ export const Playground: Story = {
 
     const afterDiv = document.createElement("div");
     afterDiv.style.padding = "20px";
-    afterDiv.style.background = "hsl(237deg 53% 16%)";
+    afterDiv.style.background = "hsl(233deg 52% 34%)";
     afterDiv.style.borderRadius = "10px";
     afterDiv.style.color = "hsl(48deg 14% 93%)";
-    afterDiv.textContent = "After";
+    afterDiv.textContent = "После";
     spacingContainer.appendChild(afterDiv);
 
     container.appendChild(spacingContainer);

@@ -16,7 +16,7 @@ const meta: Meta = {
     },
   },
   args: {
-    src: "https://linkToImage",
+    src: "https://cdn.ddfilms-static.ru/static/avatars/default.png",
     alt: "Пример картинки",
   },
 };
@@ -38,7 +38,10 @@ export const Default: Story = {
 
     const imageContainer = document.createElement("div");
     render(
-      <Image src="https://linkToImage" alt="Пример картинки" />,
+      <Image
+        src="https://cdn.ddfilms-static.ru/static/avatars/default.png"
+        alt="Пример картинки"
+      />,
       imageContainer
     );
     container.appendChild(imageContainer);

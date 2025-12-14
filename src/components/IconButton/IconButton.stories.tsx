@@ -62,7 +62,8 @@ export const AllModes: Story = {
             style={{
               width: "24px",
               height: "24px",
-              fill: "hsl(48deg 14% 93%)",
+              color: "var(--color-text)",
+              fill: "var(--color-text)",
             }}
           />
         </IconButton>,
@@ -106,7 +107,8 @@ export const Playground: Story = {
             style={{
               width: "24px",
               height: "24px",
-              fill: "hsl(48deg 14% 93%)",
+              color: "var(--color-text)",
+              fill: "var(--color-text)",
             }}
           />
         )}

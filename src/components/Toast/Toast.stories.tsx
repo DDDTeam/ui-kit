@@ -26,7 +26,7 @@ const meta: Meta = {
   },
   args: {
     type: "info",
-    message: "Toast message",
+    message: "Сообщение уведомления",
     isActive: true,
     id: 1,
   },
@@ -54,7 +54,13 @@ export const AllTypes: Story = {
       render(
         <Toast
           type={type}
-          message={`${type.charAt(0).toUpperCase() + type.slice(1)} message`}
+          message={`${
+            type === "success"
+              ? "Успешно"
+              : type === "error"
+              ? "Ошибка"
+              : "Информация"
+          }: сообщение`}
           isActive={true}
           id={index + 1}
         />,

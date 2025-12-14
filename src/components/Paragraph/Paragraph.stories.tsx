@@ -40,7 +40,7 @@ const meta: Meta = {
     align: "left",
     color: "base",
     weight: "regular",
-    children: "Paragraph",
+    children: "Параграф",
   },
 };
 
@@ -64,7 +64,7 @@ export const AllLevels: Story = {
     levels.forEach((level) => {
       const paragraphContainer = document.createElement("div");
       render(
-        <Paragraph level={level}>{`Paragraph Level ${level}`}</Paragraph>,
+        <Paragraph level={level}>{`Параграф уровня ${level}`}</Paragraph>,
         paragraphContainer
       );
       container.appendChild(paragraphContainer);

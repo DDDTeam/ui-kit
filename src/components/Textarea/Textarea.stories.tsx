@@ -35,9 +35,9 @@ const meta: Meta = {
   args: {
     status: "default",
     top: "Заголовок",
-    bottom: "Helper text",
-    placeholder: "Enter text",
-    onChange: (value: string) => console.log("Value changed", value),
+    bottom: "Текст подсказки",
+    placeholder: "Введите текст",
+    onChange: (value: string) => console.log("Значение изменилось", value),
   },
 };
 
@@ -60,15 +60,24 @@ export const Default: Story = {
     textareaContainer.style.width = "600px";
     render(
       <Textarea
-        top="Label"
-        bottom="Helper text"
-        placeholder="Enter text"
-        onChange={(value) => console.log("Value changed", value)}
+        top="Заголовок"
+        bottom="Текст подсказки"
+        placeholder="Введите текст"
+        onChange={(value) => console.log("Значение изменилось", value)}
         style={{ minHeight: "150px" }}
       />,
       textareaContainer
     );
     container.appendChild(textareaContainer);
+
+    setTimeout(() => {
+      const bottomElement = textareaContainer.querySelector(
+        '[class*="bottom"]'
+      ) as HTMLElement;
+      if (bottomElement) {
+        bottomElement.style.color = "var(--color-text)";
+      }
+    }, 100);
 
     return container;
   },
@@ -90,13 +99,22 @@ export const Playground: Story = {
     textareaContainer.style.width = "600px";
     render(
       <Textarea
-        onChange={(value) => console.log("Value changed", value)}
+        onChange={(value) => console.log("Значение изменилось", value)}
         {...args}
         style={{ minHeight: "150px", ...args.style }}
       />,
       textareaContainer
     );
     container.appendChild(textareaContainer);
+
+    setTimeout(() => {
+      const bottomElement = textareaContainer.querySelector(
+        '[class*="bottom"]'
+      ) as HTMLElement;
+      if (bottomElement) {
+        bottomElement.style.color = "var(--color-text)";
+      }
+    }, 100);
 
     return container;
   },

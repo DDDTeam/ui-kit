@@ -39,7 +39,7 @@ export const Playground: Story = {
     render(
       <FileButton
         accept="image/*"
-        onChange={(e) => console.log("File changed", e)}
+        onChange={(e) => console.log("Файл изменен", e)}
         {...args}
       />,
       fileButtonContainer

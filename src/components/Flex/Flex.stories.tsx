@@ -106,7 +106,7 @@ export const Playground: Story = {
         key={i}
         style={{
           padding: "20px",
-          background: "hsl(237deg 53% 16%)",
+          background: "hsl(233deg 52% 34%)",
           borderRadius: "10px",
           color: "hsl(48deg 14% 93%)",
         }}

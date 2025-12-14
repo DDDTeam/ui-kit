@@ -40,7 +40,7 @@ const meta: Meta = {
     align: "left",
     color: "base",
     weight: "regular",
-    children: "Headline",
+    children: "Заголовок",
   },
 };
 
@@ -64,7 +64,7 @@ export const AllLevels: Story = {
     levels.forEach((level) => {
       const headlineContainer = document.createElement("div");
       render(
-        <Headline level={level}>{`Headline Level ${level}`}</Headline>,
+        <Headline level={level}>{`Заголовок уровня ${level}`}</Headline>,
         headlineContainer
       );
       container.appendChild(headlineContainer);

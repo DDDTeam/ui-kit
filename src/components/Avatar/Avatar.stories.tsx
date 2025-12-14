@@ -22,7 +22,7 @@ const meta: Meta = {
   },
   args: {
     src: "https://cdn.ddfilms-static.ru/static/avatars/default.png",
-    alt: "Avatar",
+    alt: "Аватар",
     level: "8",
   },
 };
@@ -49,7 +49,7 @@ export const AllLevels: Story = {
       render(
         <Avatar
           src="https://cdn.ddfilms-static.ru/static/avatars/default.png"
-          alt={`Avatar level ${level}`}
+          alt={`Аватар уровня ${level}`}
           level={level}
         />,
         avatarContainer

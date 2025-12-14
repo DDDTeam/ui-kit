@@ -17,7 +17,7 @@ const meta: Meta = {
   },
   args: {
     length: 6,
-    onFinish: (otp: string) => console.log("OTP finished", otp),
+    onFinish: (otp: string) => console.log("OTP введен", otp),
   },
 };
 
@@ -40,7 +40,7 @@ export const Default: Story = {
     render(
       <OTPInput
         length={6}
-        onFinish={(otp) => console.log("OTP finished", otp)}
+        onFinish={(otp) => console.log("OTP введен", otp)}
       />,
       otpContainer
     );
@@ -65,7 +65,7 @@ export const Playground: Story = {
     const otpContainer = document.createElement("div");
     render(
       <OTPInput
-        onFinish={(otp) => console.log("OTP finished", otp)}
+        onFinish={(otp) => console.log("OTP введен", otp)}
         length={6}
         {...args}
       />,

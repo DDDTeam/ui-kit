@@ -40,7 +40,7 @@ const meta: Meta = {
     align: "center",
     color: "base",
     weight: "regular",
-    children: "Title",
+    children: "Заголовок",
   },
 };
 
@@ -69,7 +69,7 @@ export const AllLevels: Story = {
           level={level}
           align="center"
           style={{ margin: "0" }}
-        >{`Title Level ${level}`}</Title>,
+        >{`Заголовок уровня ${level}`}</Title>,
         titleContainer
       );
       container.appendChild(titleContainer);
@@ -89,13 +89,19 @@ export const Playground: Story = {
     container.style.gap = "10px";
     container.style.padding = "20px";
     container.style.minHeight = "100vh";
-    container.style.width = "100vw";
+    container.style.width = "100%";
+    container.style.boxSizing = "border-box";
+    container.style.overflowX = "hidden";
     container.style.background = "hsl(235deg 52% 16%)";
 
     const { children, ...props } = args;
 
     const titleContainer = document.createElement("div");
     titleContainer.style.margin = "0";
+    titleContainer.style.width = "100%";
+    titleContainer.style.maxWidth = "100%";
+    titleContainer.style.boxSizing = "border-box";
+    titleContainer.style.overflowWrap = "break-word";
     render(
       <Title {...props} style={{ margin: "0", ...props.style }}>
         {children}

@@ -9,7 +9,7 @@ const meta: Meta = {
     mode: {
       control: "select",
       options: ["low", "high", "medium"],
-      description: "Режим бейджа",
+      description: "Вид бейджа",
     },
     size: {
       control: "select",
@@ -24,7 +24,7 @@ const meta: Meta = {
   args: {
     mode: "low",
     size: "m",
-    children: "Badge",
+    children: "Бейдж",
   },
 };
 
@@ -56,7 +56,9 @@ export const AllModes: Story = {
         <Badge
           mode={mode}
           style={{ position: "static", top: "auto", left: "auto" }}
-        >{`${mode.charAt(0).toUpperCase() + mode.slice(1)} Badge`}</Badge>,
+        >
+          {"бейдж"}
+        </Badge>,
         badgeContainer
       );
       container.appendChild(badgeContainer);

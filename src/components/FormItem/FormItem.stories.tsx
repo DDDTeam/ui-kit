@@ -78,8 +78,8 @@ export const AllModes: Story = {
           mode={mode}
           top={`${mode.charAt(0).toUpperCase() + mode.slice(1)}`}
           bottom="Подсказка"
-          placeholder="Enter text"
-          onChange={(value) => console.log("Value changed", value)}
+          placeholder="Введите текст"
+          onChange={(value) => console.log("Значение изменилось", value)}
         />,
         formItemContainer
       );

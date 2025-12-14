@@ -21,9 +21,9 @@ const meta: Meta = {
     },
   },
   args: {
-    text: "Tooltip text",
+    text: "Текст подсказки",
     placement: "right",
-    children: "Hover me",
+    children: "Наведите курсор",
   },
 };
 
@@ -48,7 +48,7 @@ export const AllPlacements: Story = {
       const tooltipContainer = document.createElement("div");
       tooltipContainer.style.position = "relative";
       render(
-        <Tooltip text={`Tooltip ${placement}`} placement={placement}>
+        <Tooltip text={`Подсказка ${placement}`} placement={placement}>
           <button
             style={{
               padding: "10px 20px",
@@ -59,14 +59,13 @@ export const AllPlacements: Story = {
               cursor: "pointer",
             }}
           >
-            Hover me ({placement})
+            Наведите курсор ({placement})
           </button>
         </Tooltip>,
         tooltipContainer
       );
       container.appendChild(tooltipContainer);
 
-      // Устанавливаем тултип видимым для демонстрации
       requestAnimationFrame(() => {
         setTimeout(() => {
           const allDivs = tooltipContainer.querySelectorAll("div");
@@ -80,7 +79,6 @@ export const AllPlacements: Story = {
               el.style.opacity = "1";
               el.style.pointerEvents = "none";
               el.style.visibility = "visible";
-              // Исправляем позиционирование для fixed
               if (
                 el.style.position === "fixed" ||
                 getComputedStyle(el).position === "fixed"
@@ -152,7 +150,6 @@ export const Playground: Story = {
     );
     container.appendChild(tooltipContainer);
 
-    // Устанавливаем тултип видимым для демонстрации
     requestAnimationFrame(() => {
       setTimeout(() => {
         const allDivs = tooltipContainer.querySelectorAll("div");
@@ -167,7 +164,6 @@ export const Playground: Story = {
             el.style.opacity = "1";
             el.style.pointerEvents = "none";
             el.style.visibility = "visible";
-            // Исправляем позиционирование для fixed
             if (
               el.style.position === "fixed" ||
               getComputedStyle(el).position === "fixed"

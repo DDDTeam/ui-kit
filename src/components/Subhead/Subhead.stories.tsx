@@ -46,7 +46,7 @@ const meta: Meta = {
     color: "base",
     weight: "regular",
     opacity: "100",
-    children: "Subhead",
+    children: "Подзаголовок",
   },
 };
 
@@ -70,7 +70,7 @@ export const AllLevels: Story = {
     levels.forEach((level) => {
       const subheadContainer = document.createElement("div");
       render(
-        <Subhead level={level}>{`Subhead Level ${level}`}</Subhead>,
+        <Subhead level={level}>{`Подзаголовок уровня ${level}`}</Subhead>,
         subheadContainer
       );
       container.appendChild(subheadContainer);
