@@ -8,22 +8,17 @@ const meta: Meta = {
   argTypes: {
     text: {
       control: "text",
-      description: "Текст подсказки",
+      description: "Текст тултипа",
     },
     placement: {
       control: "select",
       options: ["top", "bottom", "left", "right"],
-      description: "Позиция подсказки",
-    },
-    children: {
-      control: "text",
-      description: "Элемент, к которому привязана подсказка",
+      description: "Расположение тултипа",
     },
   },
   args: {
-    text: "Текст подсказки",
+    text: "Текст тултипа",
     placement: "right",
-    children: "Наведите курсор",
   },
 };
 
@@ -38,77 +33,139 @@ export const AllPlacements: Story = {
     container.style.justifyContent = "center";
     container.style.flexDirection = "column";
     container.style.gap = "40px";
-    container.style.padding = "40px";
+    container.style.padding = "60px";
     container.style.minHeight = "100vh";
+    container.style.width = "100%";
     container.style.background = "hsl(235deg 52% 16%)";
+    container.style.position = "relative";
 
-    const placements = ["top", "bottom", "left", "right"] as const;
+    const placementLabels: Record<string, string> = {
+      top: "сверху",
+      right: "справа",
+      left: "слева",
+      bottom: "снизу",
+    };
 
-    placements.forEach((placement) => {
+    const placements = [
+      { placement: "top" as const, text: "Тултип сверху" },
+      { placement: "right" as const, text: "Тултип справа" },
+      { placement: "left" as const, text: "Тултип слева" },
+      { placement: "bottom" as const, text: "Тултип снизу" },
+    ];
+
+    placements.forEach(({ placement, text }) => {
       const tooltipContainer = document.createElement("div");
       tooltipContainer.style.position = "relative";
+      tooltipContainer.style.display = "inline-block";
+
       render(
-        <Tooltip text={`Подсказка ${placement}`} placement={placement}>
-          <button
+        <Tooltip text={text} placement={placement}>
+          <div
             style={{
-              padding: "10px 20px",
-              background: "#007bff",
-              color: "white",
-              border: "none",
-              borderRadius: "4px",
+              width: "160px",
+              height: "100px",
+              backgroundColor: "var(--color-accent-2)",
+              borderRadius: "8px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
               cursor: "pointer",
+              transition: "opacity 0.2s ease",
+              color: "var(--color-text)",
+              fontSize: "18px",
+              fontWeight: "500",
+              whiteSpace: "pre-line",
+              textAlign: "center",
+            }}
+            onMouseEnter={(e: any) => {
+              e.currentTarget.style.opacity = "0.9";
+              const trigger = e.currentTarget;
+              const rect = trigger.getBoundingClientRect();
+
+              const setTooltipPosition = (tooltip: HTMLElement) => {
+                tooltip.style.top = "";
+                tooltip.style.bottom = "";
+                tooltip.style.left = "";
+                tooltip.style.right = "";
+                tooltip.style.transform = "";
+
+                switch (placement) {
+                  case "top":
+                    tooltip.style.bottom = `${
+                      window.innerHeight - rect.top - 10
+                    }px`;
+                    tooltip.style.left = `${rect.left + rect.width / 2}px`;
+                    tooltip.style.transform = "translateX(-50%)";
+                    break;
+                  case "bottom":
+                    tooltip.style.top = `${rect.bottom + 8}px`;
+                    tooltip.style.left = `${rect.left + rect.width / 2}px`;
+                    tooltip.style.transform = "translateX(-50%)";
+                    break;
+                  case "left":
+                    tooltip.style.top = `${rect.top + rect.height / 2}px`;
+                    tooltip.style.right = `${
+                      window.innerWidth - rect.left - 10
+                    }px`;
+                    tooltip.style.transform = "translateY(-50%)";
+                    break;
+                  case "right":
+                    tooltip.style.top = `${rect.top + rect.height / 2}px`;
+                    tooltip.style.left = `${rect.right + 8}px`;
+                    tooltip.style.transform = "translateY(-50%)";
+                    break;
+                }
+              };
+
+              const updateTooltipPosition = () => {
+                const allFixedElements = Array.from(
+                  document.querySelectorAll("*")
+                ).filter(
+                  (el) =>
+                    window.getComputedStyle(el as HTMLElement).position ===
+                    "fixed"
+                ) as HTMLElement[];
+
+                const tooltip = allFixedElements.find(
+                  (el) => el.textContent?.trim() === text
+                );
+
+                if (tooltip) {
+                  setTooltipPosition(tooltip);
+                } else {
+                  setTimeout(updateTooltipPosition, 0);
+                }
+              };
+
+              updateTooltipPosition();
+
+              const observer = new MutationObserver(() => {
+                updateTooltipPosition();
+              });
+
+              observer.observe(document.body, {
+                childList: true,
+                subtree: true,
+              });
+
+              setTimeout(updateTooltipPosition, 0);
+              setTimeout(updateTooltipPosition, 5);
+              setTimeout(() => {
+                updateTooltipPosition();
+                observer.disconnect();
+              }, 50);
+            }}
+            onMouseLeave={(e: any) => {
+              e.currentTarget.style.opacity = "1";
             }}
           >
-            Наведите курсор ({placement})
-          </button>
+            {placementLabels[placement]}
+          </div>
         </Tooltip>,
         tooltipContainer
       );
-      container.appendChild(tooltipContainer);
 
-      requestAnimationFrame(() => {
-        setTimeout(() => {
-          const allDivs = tooltipContainer.querySelectorAll("div");
-          allDivs.forEach((div) => {
-            const className = div.className || "";
-            if (
-              className.includes("tooltip") &&
-              !className.includes("tooltipWrapper")
-            ) {
-              const el = div as HTMLElement;
-              el.style.opacity = "1";
-              el.style.pointerEvents = "none";
-              el.style.visibility = "visible";
-              if (
-                el.style.position === "fixed" ||
-                getComputedStyle(el).position === "fixed"
-              ) {
-                const button = tooltipContainer.querySelector("button");
-                if (button) {
-                  const rect = button.getBoundingClientRect();
-                  if (placement === "top") {
-                    el.style.top = `${rect.top - el.offsetHeight - 16}px`;
-                    el.style.left = `${rect.left + rect.width / 2}px`;
-                    el.style.transform = "translateX(-50%)";
-                  } else if (placement === "bottom") {
-                    el.style.top = `${rect.bottom + 16}px`;
-                    el.style.left = `${rect.left + rect.width / 2}px`;
-                    el.style.transform = "translateX(-50%)";
-                  } else if (placement === "left") {
-                    el.style.left = `${rect.left - el.offsetWidth - 16}px`;
-                    el.style.top = `${rect.top + rect.height / 2}px`;
-                    el.style.transform = "translateY(-50%)";
-                  } else if (placement === "right") {
-                    el.style.left = `${rect.right + 16}px`;
-                    el.style.top = `${rect.top + rect.height / 2}px`;
-                    el.style.transform = "translateY(-50%)";
-                  }
-                }
-              }
-            }
-          });
-        }, 300);
-      });
+      container.appendChild(tooltipContainer);
     });
 
     return container;
@@ -123,77 +180,124 @@ export const Playground: Story = {
     container.style.justifyContent = "center";
     container.style.flexDirection = "column";
     container.style.gap = "10px";
-    container.style.padding = "20px";
+    container.style.padding = "60px";
     container.style.minHeight = "100vh";
+    container.style.width = "100%";
     container.style.background = "hsl(235deg 52% 16%)";
-
-    const { children, ...props } = args;
 
     const tooltipContainer = document.createElement("div");
     tooltipContainer.style.position = "relative";
+    tooltipContainer.style.display = "inline-block";
+
+    const placement = args.placement || "right";
+
     render(
-      <Tooltip text="Подсказка" {...props}>
-        <button
+      <Tooltip text={args.text || "Текст тултипа"} placement={placement}>
+        <div
           style={{
-            padding: "10px 20px",
-            background: "#007bff",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
+            width: "200px",
+            height: "120px",
+            backgroundColor: "var(--color-accent-2)",
+            borderRadius: "8px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
             cursor: "pointer",
+            transition: "opacity 0.2s ease",
+            color: "var(--color-text)",
+            fontSize: "20px",
+            fontWeight: "500",
+          }}
+          onMouseEnter={(e: any) => {
+            e.currentTarget.style.opacity = "0.9";
+            const trigger = e.currentTarget;
+            const rect = trigger.getBoundingClientRect();
+            const tooltipText = args.text || "Текст тултипа";
+
+            const setTooltipPosition = (tooltip: HTMLElement) => {
+              tooltip.style.top = "";
+              tooltip.style.bottom = "";
+              tooltip.style.left = "";
+              tooltip.style.right = "";
+              tooltip.style.transform = "";
+
+              switch (placement) {
+                case "top":
+                  tooltip.style.bottom = `${
+                    window.innerHeight - rect.top + 2
+                  }px`;
+                  tooltip.style.left = `${rect.left + rect.width / 2}px`;
+                  tooltip.style.transform = "translateX(-50%)";
+                  break;
+                case "bottom":
+                  tooltip.style.top = `${rect.bottom + 8}px`;
+                  tooltip.style.left = `${rect.left + rect.width / 2}px`;
+                  tooltip.style.transform = "translateX(-50%)";
+                  break;
+                case "left":
+                  tooltip.style.top = `${rect.top + rect.height / 2}px`;
+                  tooltip.style.right = `${
+                    window.innerWidth - rect.left - 8
+                  }px`;
+                  tooltip.style.transform = "translateY(-50%)";
+                  break;
+                case "right":
+                  tooltip.style.top = `${rect.top + rect.height / 2}px`;
+                  tooltip.style.left = `${rect.right + 8}px`;
+                  tooltip.style.transform = "translateY(-50%)";
+                  break;
+              }
+            };
+
+            const updateTooltipPosition = () => {
+              const allFixedElements = Array.from(
+                document.querySelectorAll("*")
+              ).filter(
+                (el) =>
+                  window.getComputedStyle(el as HTMLElement).position ===
+                  "fixed"
+              ) as HTMLElement[];
+
+              const tooltip = allFixedElements.find(
+                (el) => el.textContent?.trim() === tooltipText
+              );
+
+              if (tooltip) {
+                setTooltipPosition(tooltip);
+              } else {
+                setTimeout(updateTooltipPosition, 0);
+              }
+            };
+
+            updateTooltipPosition();
+
+            const observer = new MutationObserver(() => {
+              updateTooltipPosition();
+            });
+
+            observer.observe(document.body, {
+              childList: true,
+              subtree: true,
+            });
+
+            setTimeout(updateTooltipPosition, 0);
+            setTimeout(updateTooltipPosition, 5);
+            setTimeout(() => {
+              updateTooltipPosition();
+              observer.disconnect();
+            }, 50);
+          }}
+          onMouseLeave={(e: any) => {
+            e.currentTarget.style.opacity = "1";
           }}
         >
-          {children}
-        </button>
+          На меня
+        </div>
       </Tooltip>,
       tooltipContainer
     );
-    container.appendChild(tooltipContainer);
 
-    requestAnimationFrame(() => {
-      setTimeout(() => {
-        const allDivs = tooltipContainer.querySelectorAll("div");
-        const placement = props.placement || "right";
-        allDivs.forEach((div) => {
-          const className = div.className || "";
-          if (
-            className.includes("tooltip") &&
-            !className.includes("tooltipWrapper")
-          ) {
-            const el = div as HTMLElement;
-            el.style.opacity = "1";
-            el.style.pointerEvents = "none";
-            el.style.visibility = "visible";
-            if (
-              el.style.position === "fixed" ||
-              getComputedStyle(el).position === "fixed"
-            ) {
-              const button = tooltipContainer.querySelector("button");
-              if (button) {
-                const rect = button.getBoundingClientRect();
-                if (placement === "top") {
-                  el.style.top = `${rect.top - el.offsetHeight - 16}px`;
-                  el.style.left = `${rect.left + rect.width / 2}px`;
-                  el.style.transform = "translateX(-50%)";
-                } else if (placement === "bottom") {
-                  el.style.top = `${rect.bottom + 16}px`;
-                  el.style.left = `${rect.left + rect.width / 2}px`;
-                  el.style.transform = "translateX(-50%)";
-                } else if (placement === "left") {
-                  el.style.left = `${rect.left - el.offsetWidth - 16}px`;
-                  el.style.top = `${rect.top + rect.height / 2}px`;
-                  el.style.transform = "translateY(-50%)";
-                } else if (placement === "right") {
-                  el.style.left = `${rect.right + 16}px`;
-                  el.style.top = `${rect.top + rect.height / 2}px`;
-                  el.style.transform = "translateY(-50%)";
-                }
-              }
-            }
-          }
-        });
-      }, 300);
-    });
+    container.appendChild(tooltipContainer);
 
     return container;
   },
