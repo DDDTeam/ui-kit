@@ -7,5 +7,5 @@
 }
 
 .sb-main-padded {
-  overflow: hidden;
+  padding: 0 !important;
 }
