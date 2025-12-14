@@ -58,6 +58,75 @@ export const AllPlacements: Story = {
       tooltipContainer.style.position = "relative";
       tooltipContainer.style.display = "inline-block";
 
+      const setTooltipPosition = (
+        tooltip: HTMLElement,
+        trigger: HTMLElement
+      ) => {
+        const rect = trigger.getBoundingClientRect();
+        tooltip.style.top = "";
+        tooltip.style.bottom = "";
+        tooltip.style.left = "";
+        tooltip.style.right = "";
+        tooltip.style.transform = "";
+
+        switch (placement) {
+          case "top":
+            tooltip.style.bottom = `${window.innerHeight - rect.top - 10}px`;
+            tooltip.style.left = `${rect.left + rect.width / 2}px`;
+            tooltip.style.transform = "translateX(-50%)";
+            break;
+          case "bottom":
+            tooltip.style.top = `${rect.bottom + 8}px`;
+            tooltip.style.left = `${rect.left + rect.width / 2}px`;
+            tooltip.style.transform = "translateX(-50%)";
+            break;
+          case "left":
+            tooltip.style.top = `${rect.top + rect.height / 2}px`;
+            tooltip.style.right = `${window.innerWidth - rect.left - 10}px`;
+            tooltip.style.transform = "translateY(-50%)";
+            break;
+          case "right":
+            tooltip.style.top = `${rect.top + rect.height / 2}px`;
+            tooltip.style.left = `${rect.right + 8}px`;
+            tooltip.style.transform = "translateY(-50%)";
+            break;
+        }
+      };
+
+      const updateTooltipPosition = () => {
+        // Находим триггер - это div с текстом внутри tooltipContainer
+        // Ищем элемент с текстом placementLabels[placement]
+        const trigger = Array.from(
+          tooltipContainer.querySelectorAll("div")
+        ).find(
+          (el) =>
+            el.textContent?.trim() === placementLabels[placement] &&
+            el.style.width === "160px"
+        ) as HTMLElement;
+
+        if (!trigger) {
+          setTimeout(updateTooltipPosition, 0);
+          return;
+        }
+
+        const allFixedElements = Array.from(
+          document.querySelectorAll("*")
+        ).filter(
+          (el) =>
+            window.getComputedStyle(el as HTMLElement).position === "fixed"
+        ) as HTMLElement[];
+
+        const tooltip = allFixedElements.find(
+          (el) => el.textContent?.trim() === text
+        );
+
+        if (tooltip) {
+          setTooltipPosition(tooltip, trigger);
+        } else {
+          setTimeout(updateTooltipPosition, 0);
+        }
+      };
+
       render(
         <Tooltip text={text} placement={placement}>
           <div
@@ -79,81 +148,7 @@ export const AllPlacements: Story = {
             }}
             onMouseEnter={(e: any) => {
               e.currentTarget.style.opacity = "0.9";
-              const trigger = e.currentTarget;
-              const rect = trigger.getBoundingClientRect();
-
-              const setTooltipPosition = (tooltip: HTMLElement) => {
-                tooltip.style.top = "";
-                tooltip.style.bottom = "";
-                tooltip.style.left = "";
-                tooltip.style.right = "";
-                tooltip.style.transform = "";
-
-                switch (placement) {
-                  case "top":
-                    tooltip.style.bottom = `${
-                      window.innerHeight - rect.top - 10
-                    }px`;
-                    tooltip.style.left = `${rect.left + rect.width / 2}px`;
-                    tooltip.style.transform = "translateX(-50%)";
-                    break;
-                  case "bottom":
-                    tooltip.style.top = `${rect.bottom + 8}px`;
-                    tooltip.style.left = `${rect.left + rect.width / 2}px`;
-                    tooltip.style.transform = "translateX(-50%)";
-                    break;
-                  case "left":
-                    tooltip.style.top = `${rect.top + rect.height / 2}px`;
-                    tooltip.style.right = `${
-                      window.innerWidth - rect.left - 10
-                    }px`;
-                    tooltip.style.transform = "translateY(-50%)";
-                    break;
-                  case "right":
-                    tooltip.style.top = `${rect.top + rect.height / 2}px`;
-                    tooltip.style.left = `${rect.right + 8}px`;
-                    tooltip.style.transform = "translateY(-50%)";
-                    break;
-                }
-              };
-
-              const updateTooltipPosition = () => {
-                const allFixedElements = Array.from(
-                  document.querySelectorAll("*")
-                ).filter(
-                  (el) =>
-                    window.getComputedStyle(el as HTMLElement).position ===
-                    "fixed"
-                ) as HTMLElement[];
-
-                const tooltip = allFixedElements.find(
-                  (el) => el.textContent?.trim() === text
-                );
-
-                if (tooltip) {
-                  setTooltipPosition(tooltip);
-                } else {
-                  setTimeout(updateTooltipPosition, 0);
-                }
-              };
-
               updateTooltipPosition();
-
-              const observer = new MutationObserver(() => {
-                updateTooltipPosition();
-              });
-
-              observer.observe(document.body, {
-                childList: true,
-                subtree: true,
-              });
-
-              setTimeout(updateTooltipPosition, 0);
-              setTimeout(updateTooltipPosition, 5);
-              setTimeout(() => {
-                updateTooltipPosition();
-                observer.disconnect();
-              }, 50);
             }}
             onMouseLeave={(e: any) => {
               e.currentTarget.style.opacity = "1";
@@ -166,6 +161,17 @@ export const AllPlacements: Story = {
       );
 
       container.appendChild(tooltipContainer);
+
+      // Устанавливаем позицию сразу после рендера, до наведения
+      setTimeout(() => {
+        updateTooltipPosition();
+      }, 0);
+      setTimeout(() => {
+        updateTooltipPosition();
+      }, 10);
+      setTimeout(() => {
+        updateTooltipPosition();
+      }, 50);
     });
 
     return container;
@@ -190,9 +196,71 @@ export const Playground: Story = {
     tooltipContainer.style.display = "inline-block";
 
     const placement = args.placement || "right";
+    const tooltipText = args.text || "Текст тултипа";
+
+    const setTooltipPosition = (tooltip: HTMLElement, trigger: HTMLElement) => {
+      const rect = trigger.getBoundingClientRect();
+      tooltip.style.top = "";
+      tooltip.style.bottom = "";
+      tooltip.style.left = "";
+      tooltip.style.right = "";
+      tooltip.style.transform = "";
+
+      switch (placement) {
+        case "top":
+          tooltip.style.bottom = `${window.innerHeight - rect.top + 2}px`;
+          tooltip.style.left = `${rect.left + rect.width / 2}px`;
+          tooltip.style.transform = "translateX(-50%)";
+          break;
+        case "bottom":
+          tooltip.style.top = `${rect.bottom + 8}px`;
+          tooltip.style.left = `${rect.left + rect.width / 2}px`;
+          tooltip.style.transform = "translateX(-50%)";
+          break;
+        case "left":
+          tooltip.style.top = `${rect.top + rect.height / 2}px`;
+          tooltip.style.right = `${window.innerWidth - rect.left - 8}px`;
+          tooltip.style.transform = "translateY(-50%)";
+          break;
+        case "right":
+          tooltip.style.top = `${rect.top + rect.height / 2}px`;
+          tooltip.style.left = `${rect.right + 8}px`;
+          tooltip.style.transform = "translateY(-50%)";
+          break;
+      }
+    };
+
+    const updateTooltipPosition = () => {
+      // Находим триггер - это div с текстом "На меня" внутри tooltipContainer
+      const trigger = Array.from(tooltipContainer.querySelectorAll("div")).find(
+        (el) =>
+          el.textContent?.trim() === "На меня" && el.style.width === "200px"
+      ) as HTMLElement;
+
+      if (!trigger) {
+        setTimeout(updateTooltipPosition, 0);
+        return;
+      }
+
+      const allFixedElements = Array.from(
+        document.querySelectorAll("*")
+      ).filter(
+        (el) => window.getComputedStyle(el as HTMLElement).position === "fixed"
+      ) as HTMLElement[];
+
+      const tooltip = allFixedElements.find(
+        (el) => el.textContent?.trim() === tooltipText
+      );
+
+      if (tooltip) {
+        setTooltipPosition(tooltip, trigger);
+      } else {
+        setTimeout(updateTooltipPosition, 0);
+      }
+    };
 
     render(
-      <Tooltip text={args.text || "Текст тултипа"} placement={placement}>
+      <Tooltip text={tooltipText} placement={placement}>
         <div
           style={{
             width: "200px",
@@ -210,82 +278,7 @@ export const Playground: Story = {
           }}
           onMouseEnter={(e: any) => {
             e.currentTarget.style.opacity = "0.9";
-            const trigger = e.currentTarget;
-            const rect = trigger.getBoundingClientRect();
-            const tooltipText = args.text || "Текст тултипа";
-
-            const setTooltipPosition = (tooltip: HTMLElement) => {
-              tooltip.style.top = "";
-              tooltip.style.bottom = "";
-              tooltip.style.left = "";
-              tooltip.style.right = "";
-              tooltip.style.transform = "";
-
-              switch (placement) {
-                case "top":
-                  tooltip.style.bottom = `${
-                    window.innerHeight - rect.top + 2
-                  }px`;
-                  tooltip.style.left = `${rect.left + rect.width / 2}px`;
-                  tooltip.style.transform = "translateX(-50%)";
-                  break;
-                case "bottom":
-                  tooltip.style.top = `${rect.bottom + 8}px`;
-                  tooltip.style.left = `${rect.left + rect.width / 2}px`;
-                  tooltip.style.transform = "translateX(-50%)";
-                  break;
-                case "left":
-                  tooltip.style.top = `${rect.top + rect.height / 2}px`;
-                  tooltip.style.right = `${
-                    window.innerWidth - rect.left - 8
-                  }px`;
-                  tooltip.style.transform = "translateY(-50%)";
-                  break;
-                case "right":
-                  tooltip.style.top = `${rect.top + rect.height / 2}px`;
-                  tooltip.style.left = `${rect.right + 8}px`;
-                  tooltip.style.transform = "translateY(-50%)";
-                  break;
-              }
-            };
-
-            const updateTooltipPosition = () => {
-              const allFixedElements = Array.from(
-                document.querySelectorAll("*")
-              ).filter(
-                (el) =>
-                  window.getComputedStyle(el as HTMLElement).position ===
-                  "fixed"
-              ) as HTMLElement[];
-
-              const tooltip = allFixedElements.find(
-                (el) => el.textContent?.trim() === tooltipText
-              );
-
-              if (tooltip) {
-                setTooltipPosition(tooltip);
-              } else {
-                setTimeout(updateTooltipPosition, 0);
-              }
-            };
-
             updateTooltipPosition();
-
-            const observer = new MutationObserver(() => {
-              updateTooltipPosition();
-            });
-
-            observer.observe(document.body, {
-              childList: true,
-              subtree: true,
-            });
-
-            setTimeout(updateTooltipPosition, 0);
-            setTimeout(updateTooltipPosition, 5);
-            setTimeout(() => {
-              updateTooltipPosition();
-              observer.disconnect();
-            }, 50);
           }}
           onMouseLeave={(e: any) => {
             e.currentTarget.style.opacity = "1";
@@ -298,6 +291,17 @@ export const Playground: Story = {
     );
 
     container.appendChild(tooltipContainer);
+
+    // Устанавливаем позицию сразу после рендера, до наведения
+    setTimeout(() => {
+      updateTooltipPosition();
+    }, 0);
+    setTimeout(() => {
+      updateTooltipPosition();
+    }, 10);
+    setTimeout(() => {
+      updateTooltipPosition();
+    }, 50);
 
     return container;
   },
