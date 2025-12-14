@@ -2,6 +2,11 @@ name: Deploy Frontend Dev
 
 on: push
 
+env:
+  TELEGRAM_GROUP_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+  TELEGRAM_TOPIC_ID: ${{ secrets.TELEGRAM_TOPIC_ID }}
+  TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+
 permissions:
   contents: read
   pages: write
