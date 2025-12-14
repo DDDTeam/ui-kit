@@ -20,6 +20,7 @@ export class Tooltip extends Component<TooltipProps, TooltipState> {
   };
 
   render() {
+    console.log(this.state.visible);
     const {
       placement = "right",
       children,

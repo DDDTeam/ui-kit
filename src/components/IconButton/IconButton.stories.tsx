@@ -1,33 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/html";
-import { Button } from "./Button";
+import { IconButton } from "./IconButton";
 import { render } from "@robocotik/react";
+import Star from "@/assets/star.svg?react";
 
 const meta: Meta = {
-  title: "Components/Button",
+  title: "Components/IconButton",
   tags: ["autodocs"],
   argTypes: {
     mode: {
       control: "select",
       options: ["primary", "secondary", "tertiary", "quaternary"],
       description: "Тип кнопки",
-    },
-    size: {
-      control: "select",
-      options: ["l", "m", "s", "xs"],
-      description: "Размер кнопки",
-    },
-    borderRadius: {
-      control: "select",
-      options: ["lg", "l"],
-      description: "Скругление углов",
-    },
-    disabled: {
-      control: "boolean",
-      description: "Отключенное состояние",
-    },
-    children: {
-      control: "text",
-      description: "Текст кнопки",
     },
     onClick: {
       action: "clicked",
@@ -41,21 +24,13 @@ const meta: Meta = {
       action: "mouseLeave",
       description: "Обработчик ухода курсора",
     },
-    before: {
+    children: {
       control: "text",
-      description: "Контент перед текстом",
-    },
-    after: {
-      control: "text",
-      description: "Контент после текста",
+      description: "Иконка или содержимое",
     },
   },
   args: {
-    children: "Кнопка",
     mode: "primary",
-    size: "m",
-    borderRadius: "l",
-    disabled: false,
   },
 };
 
@@ -75,9 +50,19 @@ export const AllModes: Story = {
     modes.forEach((mode) => {
       const buttonContainer = document.createElement("div");
       render(
-        <Button mode={mode}>{`${
-          mode.charAt(0).toUpperCase() + mode.slice(1)
-        } Button`}</Button>,
+        <IconButton
+          mode={mode}
+          style={{ width: "48px", height: "48px", minWidth: "48px" }}
+        >
+          <Star
+            style={{
+              width: "24px",
+              height: "24px",
+              color: "var(--color-text)",
+              fill: "var(--color-text)",
+            }}
+          />
+        </IconButton>,
         buttonContainer
       );
       container.appendChild(buttonContainer);
@@ -98,9 +83,27 @@ export const Playground: Story = {
 
     const buttonContainer = document.createElement("div");
     render(
-      <Button mode="primary" {...props}>
-        {children}
-      </Button>,
+      <IconButton
+        mode="primary"
+        {...props}
+        style={{
+          width: "48px",
+          height: "48px",
+          minWidth: "48px",
+          ...props.style,
+        }}
+      >
+        {children || (
+          <Star
+            style={{
+              width: "24px",
+              height: "24px",
+              color: "var(--color-text)",
+              fill: "var(--color-text)",
+            }}
+          />
+        )}
+      </IconButton>,
       buttonContainer
     );
     container.appendChild(buttonContainer);
