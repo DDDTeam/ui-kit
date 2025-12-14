@@ -1,12 +1,12 @@
 .tooltipWrapper {
   position: relative;
-  display: contents;
+  display: inline-block;
   z-index: 100000;
 }
 
 .tooltip {
   text-align: center;
-  position: fixed;
+  position: absolute;
   padding: 0.7rem 1rem;
   background-color: var(--color-light);
   border-radius: var(--border-radius-l);
