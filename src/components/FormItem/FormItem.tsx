@@ -97,7 +97,9 @@ export class FormItem extends Component<FormItemProps> {
         <Subhead
           className={styles.bottom}
           level="11"
-          color={status === "error" ? "error" : "base"}
+          color={
+            status === "error" ? "error" : mode === "tertiary" ? "blue" : "base"
+          }
         >
           {bottom}
         </Subhead>
