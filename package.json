@@ -30,6 +30,9 @@
   "devDependencies": {
     "@fontsource/golos-ui": "^4.5.3",
     "@robocotik/react": "^1.6.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/npm": "^12.0.2",
     "@storybook/builder-vite": "^10.1.8",
     "@storybook/html": "^10.1.8",
     "@storybook/html-vite": "^10.1.8",
@@ -38,6 +41,7 @@
     "@types/node": "^24.7.2",
     "globals": "^16.4.0",
     "sass": "^1.93.2",
+    "semantic-release": "^24.2.9",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.1",
     "vite": "^7.2.7",
