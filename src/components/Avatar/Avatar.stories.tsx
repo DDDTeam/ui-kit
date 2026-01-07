@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/html";
 import { Avatar } from "./Avatar";
-import { render } from "@robocotik/react";
+import { render } from "ddd-react";
 
 const meta: Meta = {
   title: "Components/Avatar",

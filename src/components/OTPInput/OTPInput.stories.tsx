@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/html";
 import { OTPInput } from "./OTPInput";
-import { render } from "@robocotik/react";
+import { render } from "ddd-react";
 
 const meta: Meta = {
   title: "Components/OTPInput",

@@ -1,4 +1,4 @@
-import { Component, type Ref } from "@robocotik/react";
+import { Component, type Ref } from "ddd-react";
 import clsx from "ddd-clsx";
 import styles from "./Tooltip.module.scss";
 
@@ -20,7 +20,6 @@ export class Tooltip extends Component<TooltipProps, TooltipState> {
   };
 
   render() {
-    console.log(this.state.visible);
     const {
       placement = "right",
       children,

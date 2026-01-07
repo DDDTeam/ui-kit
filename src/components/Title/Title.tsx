@@ -1,4 +1,4 @@
-import { Component, type Ref } from "@robocotik/react";
+import { Component, type Ref } from "ddd-react";
 import clsx from "ddd-clsx";
 import styles from "./Title.module.scss";
 

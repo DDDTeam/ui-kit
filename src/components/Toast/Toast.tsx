@@ -3,7 +3,7 @@ import Info from "@/assets/info.svg";
 import Success from "@/assets/success.svg";
 import type { ToastType } from "@/types/toasts";
 import clsx from "ddd-clsx";
-import { Component } from "@robocotik/react";
+import { Component } from "ddd-react";
 import { Flex } from "@/components/Flex/Flex";
 import { Headline } from "@/components/Headline/Headline";
 import styles from "./Toast.module.scss";

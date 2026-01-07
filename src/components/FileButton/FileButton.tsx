@@ -1,4 +1,4 @@
-import { Component, createRef, type Ref } from "@robocotik/react";
+import { Component, createRef, type Ref } from "ddd-react";
 import { Button } from "../Button/Button";
 import clsx from "ddd-clsx";
 import styles from "./FileButton.module.scss";

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/html";
 import { IconButton } from "./IconButton";
-import { render } from "@robocotik/react";
+import { render } from "ddd-react";
 import Star from "@/assets/star.svg?react";
 
 const meta: Meta = {

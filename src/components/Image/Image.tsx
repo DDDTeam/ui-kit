@@ -1,4 +1,4 @@
-import { Component, type Ref } from "@robocotik/react";
+import { Component, type Ref } from "ddd-react";
 
 interface ImageProps {
   src?: string;

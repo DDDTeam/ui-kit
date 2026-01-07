@@ -11,7 +11,7 @@ const baseViteConfig = defineConfig((_) => {
           plugins: ["@svgr/plugin-jsx"],
           jsxRuntimeImport: {
             namespace: "jsx",
-            source: "@robocotik/react/jsx-runtime",
+            source: "ddd-react/jsx-runtime",
           },
           jsxRuntime: "automatic",
         },
@@ -40,14 +40,14 @@ const baseViteConfig = defineConfig((_) => {
       sourcemap: false,
       cssCodeSplit: false,
       rollupOptions: {
-        external: ["@robocotik/react, ddd-clsx"],
+        external: ["ddd-react, ddd-clsx"],
       },
     },
     esbuild: {
       jsx: "transform",
       jsxFactory: "jsx",
       jsxFragment: "Fragment",
-      jsxInject: "import {jsx, Fragment} from '@robocotik/react/jsx-runtime'",
+      jsxInject: "import {jsx, Fragment} from 'ddd-react/jsx-runtime'",
       jsxDev: false,
     },
   };
